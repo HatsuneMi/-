@@ -1,0 +1,66 @@
+import pygame as pg
+import random
+import time
+import copy
+
+pg.init()
+w,h = 900,600
+screen = pg.display.set_mode((w,h))
+clock = pg.time.Clock()
+pg.display.set_caption('Шашки')
+
+red = ( 255, 0, 0)
+green = ( 0, 255, 0)
+
+n2_spisok = () # конечный список ходов компьютера
+ur = 3 # кол-во предсказ. комп. ходов
+k_rez = 0
+o_rez = 0
+poz1_x = -1
+f_hi = True
+
+
+i1 = pg.image.load("D:\\res\\1b.gif")
+i2 = pg.image.load("D:\\res\\1bk.gif")
+i3 = pg.image.load("D:\\res\\1h.gif")
+i4 = pg.image.load("D:\\res\\1hk.gif")
+peshki = [0,i1,i2,i3,i4]
+
+
+pole=[[0,3,0,3,0,3,0,3],
+      [3,0,3,0,3,0,3,0],
+      [0,3,0,3,0,3,0,3],
+      [0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0],
+      [1,0,1,0,1,0,1,0],
+      [0,1,0,1,0,1,0,1],
+      [1,0,1,0,1,0,1,0]]
+
+radius = 30
+pad = 10
+
+def vivod(rsize):
+    k = 100
+    x = 0
+    for i in range(len(pole1)):
+        for j in range(len(pole1[i])):
+            if pole[i][j] == 1:
+                pg.draw.circle(screen,red,(rsize[0],rsize[1],rsize[0]+(rsize[0]+2*pad)*j,rsize[1]+(rsize[1]+2*pad)*i,rsize[1]//10),radius)
+            elif pole[i][j] == 3:
+                pg.draw.circle(screen,green,(150,150),radius)
+vivod(rsize)
+
+
+run = True
+
+while run:
+    #
+    #
+    for e in pg.event.get():
+        if e.type == pg.QUIT:
+            run = False
+    pg.display.flip()
+    pg.display.update()
+
+    clock.tick(60)
+pg.quit()
